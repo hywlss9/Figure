@@ -5,12 +5,12 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<style type="text/css">
 		*{margin:0; padding:0; box-sizing:border-box;}
-		#wrap{width:100vw; height:100vh;}
-		#side-bar{position:relative; left:-100px; width:100px; height:100%; border-right:1px solid #000;}
+		#wrap{position:relative; width:100vw; height:100vh;}
+		#side-bar{position:absolute; left:-100px; width:100px; height:100%; border-right:1px solid #000;}
 		#side-bar>ul{padding-top:20px;}
 		#side-bar>ul>li{width:60px; height:60px; margin:0 20px 20px; border:1px solid #000; border-radius:5px; text-align:center; line-height:60px; list-style:none;}
 		#side-bar>ul>li:hover{background:#000; color:#fff; transition:0.5s;}
-		#preview{display:none; border:1px solid #000;}
+		#preview{display:none; position:absolute; width:0; height:0; border:1px solid #000;}
 	</style>
 	<title>diagramma</title>
 </head>
@@ -44,19 +44,33 @@
 		});
 
 		function preview(){
-			$("#wrap").on("click", function(){
-				let top = window.event.offsetX;
-				let left = window.event.offsetY;
-				$("#preview").css({});
-				console.log(top, left);
+			let stop, sleft, ftop, fleft, width, height;
+			let left, top;
+			$(document).on("mousedown", function(){
+				stop = window.event.clientY;
+				sleft = window.event.clientX;
+			});
+			$(document).on("mousemove", function(){
+				ftop = window.event.clientY;
+				fleft = window.event.clientX;
+				width = fleft > sleft ? fleft-sleft : sleft-fleft;
+				height = ftop > stop ? ftop-stop : stop-ftop;
+				console.log("fleft : "+fleft, "ftop : "+ftop)
+				console.log("width : "+width, "height : "+height)
+				$("#preview").css({"display":"block","left":sleft+"px","top":stop+"px","width":width+"px","height":height+"px"});
 			})
+			$(document).on("mouseup", function(){
+				$("#preview").css({"display":"none"});
+				return false;
+			});
 		}
-		preview();
+		
 		$("#side-bar>ul>li").on("click", function(){
 			let index = $(this).index();
+			$(this).eq(index).css({"background":"#000","color":"#fff"});
 			switch(index){
 				case 0:
-					
+					preview();
 					console.log("square");
 					break;
 				case 1:
