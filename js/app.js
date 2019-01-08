@@ -2,7 +2,8 @@ const app = new App();
 
 const draw = new Draw();
 
-let on_draw = false;
+let draw_on = false;
+let stop, sleft, mtop, mleft, width, height;
 
 app.event();
 
@@ -34,9 +35,10 @@ function App(){
 		$(e.target).css({"background":"#000","color":"#fff"});
 		switch(index){
 			case "square":
-				draw.drawstart
-				draw.drawing
-				draw.drawfinish
+				$(document)
+					.on("mousedown",draw.drawstart)
+					.on("mousemove",draw.drawing)
+					.on("mouseup",draw.drawfinish)
 				console.log("square");
 				break;
 			case "circle":
@@ -56,16 +58,15 @@ function App(){
 }
 
 function Draw(){
-	let stop, sleft, mtop, mleft, width, height;
 	this.drawstart = () => {
-		draw = true;
-		if(draw == true){
+		draw_on = true;
+		if(draw_on == true){
 			stop = window.event.clientY;
 			sleft = window.event.clientX;
 		}
 	}
 	this.drawing = () => {
-		if(draw == true){
+		if(draw_on == true){
 			mtop = window.event.clientY;
 			mleft = window.event.clientX;
 			width = mleft > sleft ? mleft-sleft : sleft-mleft;
@@ -74,7 +75,7 @@ function Draw(){
 		}
 	}
 	this.drawfinish = () => {
-		draw = false;
+		draw_on = false;
 		$("#preview").css({"display":"none"});
 	}
 }
