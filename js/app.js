@@ -2,10 +2,10 @@ const app = new App();
 
 const draw = new Draw();
 
-let draw_on = false;
-let stop, sleft, mtop, mleft, width, height;
+let draw_on = false; //도형을 그리고 있는지 확인 하는 변수
+let stop, sleft, mtop, mleft, width, height; //도형의 위치, 크기 값
 
-app.event();
+app.event(); //이벤트 시작
 
 function App(){
 	this.event = () => {
