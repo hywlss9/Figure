@@ -1,0 +1,7 @@
+*{margin:0; padding:0; box-sizing:border-box; user-select:none;}
+#wrap{position:relative; width:100vw; height:100vh;}
+#side-bar{position:absolute; left:-100px; width:100px; height:100%; border-right:1px solid #000;}
+#side-bar>ul{padding-top:20px;}
+#side-bar>ul>li{width:60px; height:60px; margin:0 20px 20px; border:1px solid #000; border-radius:5px; text-align:center; line-height:60px; list-style:none;}
+#side-bar>ul>li:hover{background:#000; color:#fff; transition:0.5s;}
+#preview{display:none; position:absolute; width:0; height:0; border:1px solid #000;}

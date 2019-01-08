@@ -3,16 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<style type="text/css">
-		*{margin:0; padding:0; box-sizing:border-box;}
-		#wrap{position:relative; width:100vw; height:100vh;}
-		#side-bar{position:absolute; left:-100px; width:100px; height:100%; border-right:1px solid #000;}
-		#side-bar>ul{padding-top:20px;}
-		#side-bar>ul>li{width:60px; height:60px; margin:0 20px 20px; border:1px solid #000; border-radius:5px; text-align:center; line-height:60px; list-style:none;}
-		#side-bar>ul>li:hover{background:#000; color:#fff; transition:0.5s;}
-		#preview{display:none; position:absolute; width:0; height:0; border:1px solid #000;}
-	</style>
-	<title>diagramma</title>
+	<link rel="stylesheet" href="./css/common.css">
+	<title>도형그리기</title>
 </head>
 <body>
 	<div id="wrap">
@@ -27,66 +19,6 @@
 		</div>
 		<div id="preview"></div>
 	</div>
-	<script type="text/javascript">
-		$(document).keydown(function(e){
-			let key = e.keyCode;
-			if(key == "9"){
-				if($("#side-bar").attr('class') == "tab"){
-					if($("#side-bar").is(":animated")) return false;
-					$("#side-bar").removeClass('tab').animate({"left":"-100px"});
-					return false;
-				}else{
-					$("#side-bar").addClass('tab').animate({"left":0});
-					if($("#side-bar").is(":animated")) return false;
-					return false;
-				}
-			}
-		});
-
-		function preview(){
-			let stop, sleft, ftop, fleft, width, height;
-			let left, top;
-			$(document).on("mousedown", function(){
-				stop = window.event.clientY;
-				sleft = window.event.clientX;
-			});
-			$(document).on("mousemove", function(){
-				ftop = window.event.clientY;
-				fleft = window.event.clientX;
-				width = fleft > sleft ? fleft-sleft : sleft-fleft;
-				height = ftop > stop ? ftop-stop : stop-ftop;
-				console.log("fleft : "+fleft, "ftop : "+ftop)
-				console.log("width : "+width, "height : "+height)
-				$("#preview").css({"display":"block","left":sleft+"px","top":stop+"px","width":width+"px","height":height+"px"});
-			})
-			$(document).on("mouseup", function(){
-				$("#preview").css({"display":"none"});
-				return false;
-			});
-		}
-		
-		$("#side-bar>ul>li").on("click", function(){
-			let index = $(this).index();
-			$(this).eq(index).css({"background":"#000","color":"#fff"});
-			switch(index){
-				case 0:
-					preview();
-					console.log("square");
-					break;
-				case 1:
-					console.log("circle");
-					break;
-				case 2:
-					console.log("move");
-					break;
-				case 3:
-					console.log("delete");
-					break;
-				case 4:
-					console.log("clear");
-					break;
-			}
-		});
-	</script>
+	<script type="text/javascript" src="./js/app.js"></script>
 </body>
 </html>
