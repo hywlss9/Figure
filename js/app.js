@@ -71,11 +71,18 @@ function Draw(){
 			mleft = window.event.clientX;
 			width = mleft > sleft ? mleft-sleft : sleft-mleft;
 			height = mtop > stop ? mtop-stop : stop-mtop;
-			$("#preview").css({"display":"block","left":sleft+"px","top":stop+"px","width":width+"px","height":height+"px"});
+			$("#preview").css({"display":"block","top":stop+"px","left":sleft+"px","width":width+"px","height":height+"px"});
 		}
 	}
 	this.drawfinish = () => {
 		draw_on = false;
 		$("#preview").css({"display":"none"});
+		$("#wrap").append("<div class='box' style='position:absolute; top:"+stop+"px; left:"+sleft+"px; width:"+width+"px; height:"+height+"px; border:1px solid #000; background:#fff;'></div>");
+		stop = 0;
+		sleft = 0;
+		mtop = 0;
+		mleft = 0;
+		width = 0;
+		height = 0;
 	}
 }
