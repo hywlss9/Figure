@@ -3,7 +3,7 @@ const app = new App();
 const draw = new Draw();
 
 let draw_on = false; //도형을 그리고 있는지 확인 하는 변수
-let stop, sleft, mtop, mleft, width, height; //도형의 위치, 크기 값
+let stop, sleft, mtop, mleft, width, height, rtop, rleft; //도형의 위치, 크기 값
 
 app.event(); //이벤트 시작
 
@@ -11,7 +11,6 @@ function App(){
 	this.event = () => {
 		$(document)
 			.keydown(app.on_menu)
-
 
 		$("#side-bar>ul>li").on("click",app.select_menu);
 	}
@@ -66,23 +65,31 @@ function Draw(){
 		}
 	}
 	this.drawing = () => {
+		mleft = window.event.clientX;
+		mtop = window.event.clientY;
 		if(draw_on == true){
-			mtop = window.event.clientY;
-			mleft = window.event.clientX;
-			width = mleft > sleft ? mleft-sleft : sleft-mleft;
-			height = mtop > stop ? mtop-stop : stop-mtop;
-			$("#preview").css({"display":"block","top":stop+"px","left":sleft+"px","width":width+"px","height":height+"px"});
+			height = stop > mtop ? stop-mtop : mtop-stop;
+			width = sleft > mleft ? sleft-mleft : mleft-sleft;
+			mtop = stop > mtop ? stop - height : window.event.clientY;
+			mleft = sleft > mleft ? sleft - width : window.event.clientX;
+
+			rtop = stop>mtop?mtop:stop;
+			rleft = sleft>mleft?mleft:sleft;
+
+			$("#preview").css({"display":"block","top":rtop+"px","left":rleft+"px","width":width+"px","height":height+"px"});
 		}
 	}
 	this.drawfinish = () => {
 		draw_on = false;
 		$("#preview").css({"display":"none"});
-		$("#wrap").append("<div class='box' style='position:absolute; top:"+stop+"px; left:"+sleft+"px; width:"+width+"px; height:"+height+"px; border:1px solid #000; background:#fff;'></div>");
+		$("#wrap").append("<div class='box' style='position:absolute; top:"+rtop+"px; left:"+rleft+"px; width:"+width+"px; height:"+height+"px; border:1px solid #000; background:#fff;'></div>");
 		stop = 0;
 		sleft = 0;
 		mtop = 0;
 		mleft = 0;
-		width = 0;
 		height = 0;
+		width = 0;
+		rtop = 0;
+		rleft = 0;
 	}
 }
