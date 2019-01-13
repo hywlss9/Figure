@@ -39,14 +39,18 @@ function App(){
 				$(document)
 					.on("mousedown",draw.drawstart)
 					.on("mousemove",draw.drawing)
-					.on("mouseup",draw.drawfinish)
-				console.log("square");
+					.on("mouseup",draw.drawend)
+				e.stopPropagation();
 				break;
 			case "circle":
 				console.log("circle");
 				break;
 			case "move":
-				console.log("move");
+				$(".box")
+					.on("mousedown",move.movestart)
+					.on("mousemove",move.moving)
+					.on("mouseup",move.moveend)
+				e.stopPropagation();
 				break;
 			case "delete":
 				console.log("delete");
@@ -81,7 +85,7 @@ function Draw(){
 			$("#preview").css({"display":"block","top":rtop+"px","left":rleft+"px","width":width+"px","height":height+"px"}).text("w : "+width+"px / h : "+height+"px");
 		}
 	}
-	this.drawfinish = () => {
+	this.drawend = () => {
 		draw_on = false;
 		$("#preview").css({"display":"none"});
 		$("#wrap").append("<div class='box' style='position:absolute; top:"+rtop+"px; left:"+rleft+"px; width:"+width+"px; height:"+height+"px; border:1px solid #000; background:#fff;'></div>");
@@ -97,5 +101,13 @@ function Draw(){
 }
 
 function Move(){
-	
+	this.movestart = () => {
+		console.log("movestart")
+	}
+	this.moving = () => {
+		console.log("moving")
+	}
+	this.moveend = () => {
+		console.log("moveend")
+	}
 }
