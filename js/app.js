@@ -68,15 +68,15 @@ function Draw(){
 		mleft = window.event.clientX;
 		mtop = window.event.clientY;
 		if(draw_on == true){
-			height = stop > mtop ? stop-mtop : mtop-stop;
 			width = sleft > mleft ? sleft-mleft : mleft-sleft;
+			height = stop > mtop ? stop-mtop : mtop-stop;
 			mtop = stop > mtop ? stop - height : window.event.clientY;
 			mleft = sleft > mleft ? sleft - width : window.event.clientX;
 
 			rtop = stop>mtop?mtop:stop;
 			rleft = sleft>mleft?mleft:sleft;
 
-			$("#preview").css({"display":"block","top":rtop+"px","left":rleft+"px","width":width+"px","height":height+"px"});
+			$("#preview").css({"display":"block","top":rtop+"px","left":rleft+"px","width":width+"px","height":height+"px"}).text("w : "+width+"px / h : "+height+"px");
 		}
 	}
 	this.drawfinish = () => {
@@ -87,8 +87,8 @@ function Draw(){
 		sleft = 0;
 		mtop = 0;
 		mleft = 0;
-		height = 0;
 		width = 0;
+		height = 0;
 		rtop = 0;
 		rleft = 0;
 	}
