@@ -2,6 +2,8 @@ const app = new App();
 
 const draw = new Draw();
 
+const move = new Move();
+
 let draw_on = false; //도형을 그리고 있는지 확인 하는 변수
 let stop, sleft, mtop, mleft, width, height, rtop, rleft; //도형의 위치, 크기 값
 
@@ -70,8 +72,8 @@ function Draw(){
 		if(draw_on == true){
 			width = sleft > mleft ? sleft-mleft : mleft-sleft;
 			height = stop > mtop ? stop-mtop : mtop-stop;
-			mtop = stop > mtop ? stop - height : window.event.clientY;
-			mleft = sleft > mleft ? sleft - width : window.event.clientX;
+			mtop = stop > mtop ? stop-height : window.event.clientY;
+			mleft = sleft > mleft ? sleft-width : window.event.clientX;
 
 			rtop = stop>mtop?mtop:stop;
 			rleft = sleft>mleft?mleft:sleft;
@@ -92,4 +94,8 @@ function Draw(){
 		rtop = 0;
 		rleft = 0;
 	}
+}
+
+function Move(){
+	
 }
