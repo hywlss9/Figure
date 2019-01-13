@@ -78,11 +78,20 @@ function Draw(){
 		draw_on = false;
 		$("#preview").css({"display":"none"});
 		$("#wrap").append("<div class='box' style='position:absolute; top:"+stop+"px; left:"+sleft+"px; width:"+width+"px; height:"+height+"px; border:1px solid #000; background:#fff;'></div>");
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 01c5c1d2f4e6020b1d0888dbdfb45cbbe1ab200a
 		stop = 0;
 		sleft = 0;
 		mtop = 0;
 		mleft = 0;
 		width = 0;
 		height = 0;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 5924afa552b1ba9f5c4843071fb345898fabd8da
+>>>>>>> 01c5c1d2f4e6020b1d0888dbdfb45cbbe1ab200a
 	}
 }
