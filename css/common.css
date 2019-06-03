@@ -3,5 +3,6 @@
 #side-bar{position:absolute; left:-100px; z-index:99999; width:100px; height:100%; border-right:1px solid #000; background:#fff;}
 #side-bar ul{padding-top:20px;}
 #side-bar ul li{width:60px; height:60px; margin:0 20px 20px; border:1px solid #000; border-radius:5px; text-align:center; line-height:60px; list-style:none;}
-#side-bar ul li:hover{background:#000; color:#fff; transition:0.5s;}
-#preview{display:none; position:absolute; z-index:100000; width:0; height:0; border:1px solid #000; background:#fff; text-align:center;}
+#side-bar ul li.active{background:#000; color:#fff;}
+#preview{display:none; position:relative; z-index:100000; width:0; height:0; border:1px solid #000; background:#fff;}
+#preview-size{display:none; position:absolute; z-index:100000;}
