@@ -4,6 +4,8 @@ const draw = new Draw();
 
 const move = new Move();
 
+// const del = new Del();
+
 let draw_on = false; // 도형을 그리고 있는지 확인 하는 변수
 let move_on = false;
 let move_index = "";
@@ -62,6 +64,7 @@ function App(){
 					.on("mouseup",move.moveend)
 				break;
 			case "delete":
+				$(".box").on("click", del);
 				break;
 			case "clear":
 				break;
@@ -125,13 +128,17 @@ function Move(){
 	this.moving = (e) => {
 		mleft = window.event.clientX;
 		mtop = window.event.clientY;
-		if(move_on == true){
+		if(move_on == true && draw_on == false){
 			mtop = mtop - dtop;
 			mleft = mleft - dleft;
-			$(e.target).css({"display":"block","top":mtop+"px","left":mleft+"px"});
+			$(".box").eq(move_index).css({"display":"block","top":mtop+"px","left":mleft+"px"});
 		}
 	}
 	this.moveend = () => {
 		move_on = false;
 	}
 }
+
+// function Del(){
+// 	if(!confirm("정말 삭제 하시겠습니까?")) return false;
+// }

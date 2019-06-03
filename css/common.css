@@ -1,5 +1,5 @@
 *{margin:0; padding:0; box-sizing:border-box; user-select:none;}
-#wrap{position:relative; width:100vw; height:100vh;}
+#wrap{overflow:hidden; position:relative; width:100vw; height:100vh;}
 #side-bar{position:absolute; left:-100px; z-index:99999; width:100px; height:100%; border-right:1px solid #000; background:#fff;}
 #side-bar ul{padding-top:20px;}
 #side-bar ul li{width:60px; height:60px; margin:0 20px 20px; border:1px solid #000; border-radius:5px; text-align:center; line-height:60px; list-style:none;}
